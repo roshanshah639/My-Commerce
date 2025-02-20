@@ -14,7 +14,7 @@ export const syncUserCreattion = inngest.createFunction(
     event: "clerk/user.created",
   },
   async ({ event }) => {
-    const { id, first_name, last_name, email_addresses, image_url } =
+    const { id, first_name, last_name, email_addresses, image_url, cartItems } =
       event.data;
 
     const userData = {
@@ -22,6 +22,7 @@ export const syncUserCreattion = inngest.createFunction(
       email: email_addresses[0].email_address,
       name: first_name + " " + last_name,
       imageUrl: image_url,
+      cartItems: {},
     };
 
     await connectDB();
